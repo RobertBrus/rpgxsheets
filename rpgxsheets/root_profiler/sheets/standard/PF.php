@@ -6,31 +6,26 @@
   <?php
 
   // Textual help and links for english translation
-  include_once("help_english.php");
+  include_once("help_PF.php");
 
   function GetStaticHelp( $name, $staticHelp, $class = "help" )
   {
     $helpArray = $staticHelp[ strtolower( $name ) ];
-    echo '<A href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
+    echo '<a href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
     echo $helpArray[ 0 ];
     echo '\')" onmouseout="return nd();">';
       echo '<span class="' . $class . '">';
       echo $helpArray[ 1 ];
       echo '</span>';
-    echo '</A>';
+    echo '</a>';
   }
 
   ?>
 
   <head>
-    <title><?php echo $TITLE; 3.5 ?></title>
-    <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
-    <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
-    
-    <!--[if IE]>
-        <link type="text/css" rel="stylesheet" href="v3.5-DD/ie.css" media="screen,print" />
-    <![endif]-->
-    
+    <title><?php echo $TITLE; PF ?></title>
+    <link type="text/css" rel="stylesheet" href="PF/main.css" media="screen,print" />
+    <link type="text/css" rel="stylesheet" href="PF/print.css" media="print" />
     <style type="text/css" media="print">
       #save
       , #notes tr.header span
@@ -39,45 +34,43 @@
       }
     </style>
     <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
-    <script type="text/javascript" src="./v3.5-DD/general.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/prototype.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/scriptaculous.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/effects.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ogl/skills.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ogl/size.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ogl/capacity.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ogl/class.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/skills.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ac.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/ab.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/saves.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/capacity.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/init.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/gear.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/abilities.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/sheet.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/spells.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/xp.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/level.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/size.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/class.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/pic.js"></script>
-    <script type="text/javascript" src="./v3.5-DD/notes.js"></script>
-    <script language="javascript" src="./v3.5-DD/overlib.js"></script>
+    <script type="text/javascript" src="./PF/general.js"></script>
+    <script type="text/javascript" src="./PF/debug.js"></script>
+    <script type="text/javascript" src="./PF/prototype.js"></script>
+    <script type="text/javascript" src="./PF/ogl/skills.js"></script>
+    <script type="text/javascript" src="./PF/ogl/size.js"></script>
+    <script type="text/javascript" src="./PF/ogl/capacity.js"></script>
+    <script type="text/javascript" src="./PF/ogl/class.js"></script>
+    <script type="text/javascript" src="./PF/skills.js"></script>
+    <script type="text/javascript" src="./PF/ac.js"></script>
+    <script type="text/javascript" src="./PF/ab.js"></script>
+    <script type="text/javascript" src="./PF/saves.js"></script>
+    <script type="text/javascript" src="./PF/capacity.js"></script>
+    <script type="text/javascript" src="./PF/init.js"></script>
+    <script type="text/javascript" src="./PF/gear.js"></script>
+    <script type="text/javascript" src="./PF/abilities.js"></script>
+    <script type="text/javascript" src="./PF/sheet.js"></script>
+    <script type="text/javascript" src="./PF/spells.js"></script>
+    <script type="text/javascript" src="./PF/xp.js"></script>
+    <script type="text/javascript" src="./PF/level.js"></script>
+    <script type="text/javascript" src="./PF/size.js"></script>
+    <script type="text/javascript" src="./PF/class.js"></script>
+    <script type="text/javascript" src="./PF/pic.js"></script>
+    <script type="text/javascript" src="./PF/notes.js"></script>
+    <script type="text/javascript" src="./PF/overlib.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
-  <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 
-  <form action="ajax_save.php" method="post" id="charactersheet">
+  <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+ <form action="ajax_save.php" method="post" id="charactersheet">
 
 <?php if ($SHOWSAVE) { ?>
 <div id="buttons">
-    <input type="image" src="./v3.5-DD/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
-    <input type="image" src="./v3.5-DD/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
+    <input type="image" src="./PF/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
+    <input type="image" src="./PF/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
 </div>
 <div id="processing">
-    <img src="./v3.5-DD/loading.gif"/>
+    <img src="./PF/loading.gif" alt="loading..."/>
 </div>
 <?php } ?>
 
@@ -91,6 +84,7 @@
 $agent = $_SERVER['HTTP_USER_AGENT'];
 $firefox = eregi("Firefox", $agent);
 if( $firefox ) { echo '<!--'; } ?>
+ 
     <table id="maintable">
       <tr>
         <td>
@@ -101,33 +95,64 @@ if( $firefox ) { echo '<!--'; } ?>
             table#info contains all the general information on the
             character that's found at the top of the character sheet.
           -->
+          <table id="logos"> 
+          <tr>
+<td>
 
+<a href="/" target="_blank"><img src="./PF/logowithtext_white.png" border="0" alt="rpgcrossing.com" width="100" /></a>
+<img src="./PF/pathfinder-logo-text2.gif" alt="pathfinder sheet" width="109" height="12" />
+
+
+</td>
+<td>
           <table id="info" cellspacing="0">
             <tr>
-              <td colspan="2"><input type="text" <?php getnv('Name'); ?> /><br />Character Name</td>
+              <td colspan="3"><input type="text" <?php getnv('Name'); ?> /><br />Character Name</td>
               <td colspan="2"><input type="text" <?php getnv('Player'); ?> /><br />Player</td>
-              <td><input type="text" <?php getnv('Campaign'); ?> /><br />Campaign</td>
-              <td><input type="text" <?php getnv('XPCurrent'); ?> onchange="ApplyXPNext()" /><br />Current XP</td>
-              <td><input type="text" <?php getnv('XPNext'); ?> /><br />Next Level XP</td>
-              <td><input type="text" <?php getnv('XPChange'); ?> onchange="ApplyXPChange()" /><br />XP Change</td>
-            </tr>
+              <td colspan="2"><input type="text" <?php getnv('Campaign'); ?> /><br />Campaign</td>
+           </tr>
             <tr>
-              <td colspan="2"><input type="text" <?php getnv('Class'); ?> /><br /><?php GetStaticHelp( "Class", $staticHelp ); ?></td>
+              <td colspan="3"><input type="text" <?php getnv('Class'); ?> /><br /><?php GetStaticHelp( "Class", $staticHelp ); ?></td>
               <td colspan="2"><input type="text" <?php getnv('Race'); ?> /><br /><?php GetStaticHelp( "Race", $staticHelp ); ?></td>
-              <td colspan="2"><input type="text" <?php getnv('Alignment'); ?> /><br /><?php GetStaticHelp( "Alignment", $staticHelp ); ?></td>
-              <td colspan="2"><input type="text" <?php getnv('Deity'); ?> /><br />Deity</td>
+              <td colspan="1"><input type="text" <?php getnv('Alignment'); ?> /><br /><?php GetStaticHelp( "Alignment", $staticHelp ); ?></td>
+              <td colspan="1"><input type="text" <?php getnv('Deity'); ?> /><br />Deity</td>
+
             </tr>
             <tr>
-              <td class="unit"><input type="text" <?php getnv('Level'); ?> onchange="OnLevelChanged()" /><br />Level</td>
-              <td class="unit"><input type="text" <?php getnv('Size'); ?> onchange="OnSizeChanged()" /><br /><?php GetStaticHelp( "Size", $staticHelp ); ?></td>
-              <td class="unit"><input type="text" <?php getnv('Age'); ?> /><br /><?php GetStaticHelp( "Age", $staticHelp ); ?></td>
-              <td class="unit"><input type="text" <?php getnv('Gender'); ?> /><br />Gender</td>
+             <td class="smallunit"><input type="text" <?php getnv('Size'); ?> onchange="OnSizeChanged()" /><br /><?php GetStaticHelp( "Size", $staticHelp ); ?></td>
+              <td class="smallunit"><input type="text" <?php getnv('Age'); ?> /><br /><?php GetStaticHelp( "Age", $staticHelp ); ?></td>
+              <td class="smallunit"><input type="text" <?php getnv('Gender'); ?> /><br />Gender</td>
               <td class="unit"><input type="text" <?php getnv('Height'); ?> /><br /><?php GetStaticHelp( "Height", $staticHelp ); ?></td>
               <td class="unit"><input type="text" <?php getnv('Weight'); ?> /><br /><?php GetStaticHelp( "Weight", $staticHelp ); ?></td>
               <td class="unit"><input type="text" <?php getnv('Eyes'); ?> /><br />Eyes</td>
               <td class="unit"><input type="text" <?php getnv('Hair'); ?> /><br />Hair</td>
             </tr>
-          </table>
+            <tr>
+              <td class="smallunit">
+                <span>CL </span><span id="cLevel"><?php getv('cLevel'); ?> </span>
+                <input type="hidden" <?php getnv('cLevel'); ?> />
+              </td>
+              <td class="smallunit">
+                <input type="text" <?php getnv('Level'); ?> onchange="OnLevelChanged()" /><br />HD
+              </td>
+              <td></td>
+
+              <td><input type="text" <?php getnv('XPCurrent'); ?> onchange="ApplyXPNext()" /><br />Current XP</td>
+              <td><input type="text" <?php getnv('XPChange'); ?> onchange="ApplyXPChange()" /><br />XP Change</td>
+               <td><input type="text" <?php getnv('XPNext'); ?> /><br />Next Level XP</td>
+              <td><select id="XPRate" name="XPRate" onchange="ApplyXPRateChange()">
+            <option value="1" <?php if ($DATA['XPRate'] == '1') echo 'selected="selected"'; ?>>slow</option>
+                <option value="2" <?php if ($DATA['XPRate'] == '2') echo 'selected="selected"'; ?>>medium</option>
+                <option value="3" <?php if ($DATA['XPRate'] == '3') echo 'selected="selected"'; ?>>fast</option>
+              </select>
+              <br />XP Rate</td>
+ 
+            </tr>
+            </table> <!-- info -->
+          
+          </td></tr>
+
+          </table> <!-- logos -->
 
           <!--
             table#stats contains the statblock, saves, the picture...
@@ -209,7 +234,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="tag" colspan="3"><?php GetStaticHelp( "ACTION POINTS", $staticHelp ); ?></td>
           <td colspan="2"><input type="text" class="mod" <?php getnv('AP'); ?> /></td>
         </tr>
-                </table>
+        </table> <!-- statblock -->
 
               </td>
               <td colspan="2" class="top">
@@ -217,23 +242,23 @@ if( $firefox ) { echo '<!--'; } ?>
                 <table id="hp">
                   <tr>
                     <td />
-                    <td class="header">TOTAL</td>
+                    <td class="header" colspan="2">TOTAL</td>
                     <td />
-                    <td class="header" colspan="8">Current HP</td>
+                    <td class="header" colspan="2">Current HP</td>
                     <td />
-                    <td class="header" colspan="6"><?php GetStaticHelp( "Nonlethal Damage", $staticHelp, "helplink" ); ?></td>
+                    <td class="header" colspan="2"><?php GetStaticHelp( "Nonlethal Damage", $staticHelp, "helplink" ); ?></td>
                     <td />
-                    <td class="header"><?php GetStaticHelp( "Dmg Red", $staticHelp, "helplink" ); ?></td>
+                    <td class="header" colspan="10"><?php GetStaticHelp( "Dmg Red", $staticHelp, "helplink" ); ?></td>
                   </tr>
                   <tr>
                     <td class="tag"><?php GetStaticHelp( "HP", $staticHelp ); ?></td>
-                    <td><input type="text" <?php getnv('HP'); ?> /></td>
+                    <td colspan="2"><input type="text" <?php getnv('HP'); ?> /></td>
                     <td />
-                    <td colspan="8"><input type="text" <?php getnv('HPWounds'); ?> /></td>
+                    <td colspan="2"><input type="text" <?php getnv('HPWounds'); ?> /></td>
                     <td />
-                    <td colspan="6"><input type="text" <?php getnv('HPSub'); ?> /></td>
+                    <td colspan="2"><input type="text" <?php getnv('HPSub'); ?> /></td>
                     <td />
-                    <td><input type="text" <?php getnv('DamageRed'); ?> /></td>
+                    <td colspan="10"><input type="text" <?php getnv('DamageRed'); ?> /></td>
                   </tr>
                   <tr>
                     <td class="tag"><?php GetStaticHelp( "AC", $staticHelp ); ?></td>
@@ -279,7 +304,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td />
                     <td class="footer">Misc</td>
                   </tr>
-                </table>
+                  </table> <!-- hp -->
 
               </td>
             </tr>
@@ -311,7 +336,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="char">+</td>
                     <td class="unit"><input type="text" <?php getnv('InitMisc'); ?> onchange="InitCalc()" /></td>
                   </tr>
-                </table>
+                </table> <!-- init -->
 
                 <table id="speed">
                   <tr>
@@ -322,14 +347,14 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="footer">Speed</td>
                     <td class="footer">Armor Type</td>
                   </tr>
-                </table>
+                  </table> <!-- speed -->
 
               </td>
               <td rowspan="2">
 
                 <table id="imgload">
                   <tr>
-                    <td rowspan="7" class="piccell"><img id="pic" src="v3.5-DD/click.png" alt="Character Portrait" onclick="SetPic()" /></td>
+                    <td rowspan="7" class="piccell"><img id="pic" src="PF/click.png" alt="Character Portrait" onclick="SetPic()" /></td>
                     <td class="loadtext title"><?php GetStaticHelp( "Total Weight", $staticHelp ); ?></td>
                     <td><input type="text" <?php getnv('TotalWeight'); ?> /></td>
                   </tr>
@@ -357,7 +382,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="loadtext title">Push/<br />Drag</td>
                     <td><input type="text" <?php getnv('LiftPushDrag'); ?> /></td>
                   </tr>
-                </table>
+                  </table> <!-- imgload -->
 
               </td>
             </tr>
@@ -425,24 +450,26 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="char"><span class="dark">+</span></td>
                     <td><input type="text" class="temp" <?php getnv('WillTemp'); ?> onchange="SaveCalc('Will')" /></td>
                   </tr>
-                </table>
+                  </table> <!-- saves -->
 
               </td>
             </tr>
-          </table>
+            </table> <!-- stats -->
 
           <!--
             table#attacks contains the base melee and ranged attack bonuses.
           -->
 
-          <table id="attacks">
-            <tr>
+   <table id="attacks">
+      <tr>
               <td />
-              <td class="header">Total Attack Bonus</td>
+              <td class="header">Total Bonus</td>
               <td />
-              <td class="header">Base Attack Bonus</td>
+              <td class="header">BAB</td>
               <td />
               <td class="header">Str Mod</td>
+              <td />
+              <td class="header">Dex Mod</td>
               <td />
               <td class="header">Size Mod</td>
               <td />
@@ -452,14 +479,16 @@ if( $firefox ) { echo '<!--'; } ?>
               <td></td>
               <td></td>
               <td></td>
-            </tr>
-            <tr>
+      </tr>
+      <tr>
               <td class="tag"><?php GetStaticHelp( "MELEE", $staticHelp ); ?></td>
-              <td class="wide"><input type="text" <?php getnv('MBAB'); ?> /></td>
+              <td class="medwide"><input type="text" <?php getnv('MBAB'); ?> /></td>
               <td class="char">=</td>
-              <td class="wide"><input type="text" <?php getnv('MABBase'); ?> onchange="MBABCalc(); SetBAB(this);" /></td>
+              <td class="unit"><input type="text" <?php getnv('MABBase'); ?> onchange="MBABCalc(); SetBAB(this);" /></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" <?php getnv('MABStr'); ?> onchange="MBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="gray"></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" <?php getnv('MABSize'); ?> onchange="MBABCalc()" /></td>
               <td class="char">+</td>
@@ -467,31 +496,16 @@ if( $firefox ) { echo '<!--'; } ?>
               <td class="char">+</td>
               <td class="unit"><input type="text" class="temp" <?php getnv('MABTemp'); ?> onchange="MBABCalc()" /></td>
               <td class="char"></td>
-              <td class="char"></td>
-              <td class="tag"><?php GetStaticHelp( "SPELL RESIST", $staticHelp ); ?></td>
-            </tr>
-            <tr>
-              <td class="tag"><?php GetStaticHelp( "GRAPPLE", $staticHelp ); ?></td>
-              <td class="wide"><input type="text" <?php getnv('GBAB'); ?> /></td>
-              <td class="char">=</td>
-              <td class="wide"><input type="text" <?php getnv('GABBase'); ?> onchange="GBABCalc(); SetBAB(this);" /></td>
-              <td class="char">+</td>
-              <td class="unit"><input type="text" <?php getnv('GABStr'); ?> onchange="GBABCalc()" /></td>
-              <td class="char">+</td>
-              <td class="unit"><input type="text" <?php getnv('GABSize'); ?> onchange="GBABCalc()" /></td>
-              <td class="char">+</td>
-              <td class="unit"><input type="text" <?php getnv('GABMisc'); ?> onchange="GBABCalc()" /></td>
-              <td class="char">+</td>
-              <td class="unit"><input type="text" class="temp" <?php getnv('GABTemp'); ?> onchange="GBABCalc()" /></td>
-              <td class="char"></td>
-              <td class="char"></td>
-              <td class="wide"><input type="text" <?php getnv('SpellResist'); ?> /></td>
-            </tr>
-            <tr>
+              
+              <td class="tag" colspan="2"><?php GetStaticHelp( "SPELL RESIST", $staticHelp ); ?></td>
+      </tr>
+      <tr>
               <td class="tag"><?php GetStaticHelp( "RANGED", $staticHelp ); ?></td>
-              <td class="wide"><input type="text" <?php getnv('RBAB'); ?> /></td>
+              <td class="medwide"><input type="text" <?php getnv('RBAB'); ?> /></td>
               <td class="char">=</td>
-              <td class="wide"><input type="text" <?php getnv('RABBase'); ?> onchange="RBABCalc(); SetBAB(this)" /></td>
+              <td class="unit"><input type="text" <?php getnv('RABBase'); ?> onchange="RBABCalc(); SetBAB(this)" /></td>
+              <td class="char">+</td>
+              <td class="gray"></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" <?php getnv('RABDex'); ?> onchange="RBABCalc()" /></td>
               <td class="char">+</td>
@@ -500,38 +514,78 @@ if( $firefox ) { echo '<!--'; } ?>
               <td class="unit"><input type="text" <?php getnv('RABMisc'); ?> onchange="RBABCalc()" /></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" class="temp" <?php getnv('RABTemp'); ?> onchange="RBABCalc()" /></td>
-         <td class="char"></td>
-         <td class="char"></td>
-              <td class="wide" align="left" nowrap>Weapons:
+              <td class="char"></td>
+              <td class="wide" colspan="2"><input type="text" <?php getnv('SpellResist'); ?> /></td>
+        </tr>
+       <tr>
+              <td class="tag"><?php GetStaticHelp( "CMB", $staticHelp ); ?></td>
+              <td class="medwide"><input type="text" <?php getnv('CMBBAB'); ?> /></td>
+              <td class="char">=</td>
+              <td class="unit"><input type="text" <?php getnv('CMBBase'); ?> onchange="CMBBABCalc(); SetBAB(this);" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMBStr'); ?> onchange="CMBBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="gray"></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMBSize'); ?> onchange="CMBBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMBMisc'); ?> onchange="CMBBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" class="temp" <?php getnv('CMBTemp'); ?> onchange="CMBBABCalc()" /></td>
+              <td class="char"></td>
+
+              <td class="unit" align="left" nowrap="nowrap">Weapons:
+              </td>
+              <td class="unit" align="center" nowrap="nowrap">
 
          <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
 <input type="checkbox" <?php getnc('Wep'.$i.'Disp'); ?> onclick="ToggleDisplay('we<?php echo $i ?>', this);" style="width:15px; border:none;"/>
          <?php } ?>
-   <!--     </tr></table>-->
-      </td>
-            </tr>
-            <tr>
-              <td />
-              <td class="footer">Total Attack Bonus</td>
-              <td />
-              <td class="footer">Base Attack Bonus</td>
-              <td />
-              <td class="footer">Dex Mod</td>
-              <td />
-              <td class="footer">Size Mod</td>
-              <td />
-              <td class="footer">Misc Mod</td>
-              <td />
-              <td class="footer">Temp Mod</td>
-         <td />
-              <td />
-              <td class="wide" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;
+
+              </td>
+      </tr>
+              
+ 
+			<tr>
+              <td class="tag"><?php GetStaticHelp( "CMD", $staticHelp ); ?></td>
+              <td class="medwide"><input type="text" <?php getnv('CMDBAB'); ?> /></td>
+              <td class="char">=</td>
+              <td class="unit">
+                <table>
+                  <tr>
+                    <td class="basenum"><span>10</span></td>
+                    <td class="char">+</td>
+                    <td width="100%"><input type="text" <?php getnv('CMDBase'); ?> onchange="CMDBABCalc(); SetBAB(this);" /></td>
+                  </tr>
+                </table>
+              </td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMDStr'); ?> onchange="CMDBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMDDex'); ?> onchange="CMDBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMDSize'); ?> onchange="CMDBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" <?php getnv('CMDMisc'); ?> onchange="CMDBABCalc()" /></td>
+              <td class="char">+</td>
+              <td class="unit"><input type="text" class="temp" <?php getnv('CMDTemp'); ?> onchange="CMDBABCalc()" /></td>
+
+              <td class="char"></td>
+              <td class="unit" nowrap="nowrap">Armor:&nbsp;&nbsp;&nbsp;&nbsp;
+              </td>
+              <td class="unit" align="center" nowrap="nowrap">
          <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
 <input type="checkbox" <?php getnc('Arm'.$i.'Disp'); ?> onclick="ToggleDisplay('ar<?php echo $i ?>', this);" style="width:15px; border:none;"/>
          <?php } ?>
-                </td>
-            </tr>
-          </table> <!-- main -->
+              </td>
+     </tr>
+     </table> <!-- attacks -->
+
+<!-- THIS SEEMS TO BE INCORRECT?
+     </td></tr>
+          </table>
+-->
+
 
           <!--
             table.weapon are weapon slots.
@@ -639,6 +693,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
           <p style="page-break-before: always;"/>
 
+
           <!--
             table#skillsandgear holds both the skills and gear tables
           -->
@@ -650,10 +705,10 @@ if( $firefox ) { echo '<!--'; } ?>
                 <table id="skills" cellspacing="0" cellpadding="0" onmouseover="Show('skillcontext', true)" onmouseout="Show('skillcontext', false)">
                   <tr class="title">
                     <td></td>
-                    <td colspan="12">
+                    <td colspan="14">
                       <div id="skillranks">
                         <div>
-                          <input type="text" <?php getnv('MaxRank'); ?> />/<input type="text" <?php getnv('MaxRankCC'); ?> />
+                          <input type="text" <?php getnv('MaxRank'); ?> />
                         </div>
                         Max Rank
                       </div>
@@ -680,20 +735,22 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td><a href="javascript:SkillSort(SkillSort.ByMisc)" title="Sort by Miscelaneous Modifier">Misc<br />Mod</a></td>
                     <td />
                     <td>Check<br />Pen</td>
+                    <td />
+                    <td>CS<br />Mod</td>
                   </tr>
 
                   <?php
 
-                   // Loop 51 times and output the skills lines.
-                   for ( $i = 1; $i <= 51; $i++ )
+                   // Loop 41 times and output the skills lines.
+                   for ( $i = 1; $i <= 41; $i++ )
                    {
                      $skillName = sprintf( "Skill%02d", $i );
                   ?>
 
                   <tr class="skillslot">
                     <td>
-                    <A href="#" name="<?php echo $skillName; ?>Link"
-                       onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></A>
+                    <a href="#" name="<?php echo $skillName; ?>Link"
+                       onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></a>
                     </td>
                     <td class="name">
                        <input class="text" type="text" <?php getnv($skillName); ?>
@@ -701,11 +758,12 @@ if( $firefox ) { echo '<!--'; } ?>
                     </td>
                     <td class="unit">
                       <input class="text" type="text" <?php getnv($skillName . 'Ab'); ?>
-                             onchange="SkillLookUpKeyAb(this)" />
+                      onchange="SkillLookUpKeyAb('<?php echo $skillName; ?>');"  />
+                      
                       </td>
                     <td class="char">
                       <input class="chk" type="checkbox" <?php getnc($skillName . 'CC'); ?>
-                               onchange="SkillCalcRanks()" />
+                      onchange="SkillLookUpKeyAb('<?php echo $skillName; ?>');" />
                     </td>
                     <td class="unit">
                       <input class="text" type="text" <?php getnv($skillName . 'Mod'); ?> />
@@ -728,7 +786,12 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="char">+</td>
                     <td class="unit">
                       <input class="text" type="text" <?php getnv($skillName . 'CheckPen'); ?>
-                             onchange="SkillCalc(this)" readonly />
+                             onchange="SkillCalc(this)" readonly="readonly" />
+                    </td>
+                    <td class="char">+</td>
+                    <td class="unit">
+                      <input class="text" type="text" <?php getnv($skillName . 'CSMod'); ?>
+                             onchange="SkillCalc(this)" readonly="readonly" />
                     </td>
 
                   </tr>
@@ -749,72 +812,18 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="total"><span id="totalranks">0</span></td>
                     <td />
                     <td />
+                    <td />
+                    <td />
+                    <td />
                   </tr>
 
-                  <tr>
-                    <td>&nbsp;</td>
-                  </tr>
 
                 </table>
               </td>
 
               <td class="spacer"></td>
 
-              <td id="featsandgearcontainer">
-
-                <!--
-                  table#feats is the feats table.
-                -->
-                <table id="feats">
-                  <tr class="title">
-                    <td colspan="4"><?php GetStaticHelp( "Feats", $staticHelp ); ?> &amp; <?php GetStaticHelp( "Special Abilities", $staticHelp ); ?></td>
-                  </tr>
-                  <tr>
-                    <td>
-
-                      <!--
-                        Keep each column in a table to enforce a vertical tab order.
-                        It's easier to do this rather than specify the tab order of
-                        each of the thousand or so inputs.
-                      -->
-
-                      <table cellspacing="0" class="narrow">
-                        <?php
-
-                         // Loop 30 times and output the feats/abilities lines.
-                         for ( $i = 1; $i <= 30; $i++ ) {
-                           $featName = sprintf( "Feat%02d", $i );
-                         ?>
-
-                           <tr>
-                              <td class="featshelp">
-                                 <A href="#" name="<?php echo $featName; ?>Link"
-                                        onclick="ShowHelp('<?php echo $featName; ?>');return false;"></A>
-                              </td>
-                              <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
-                                         <?php getnv( $featName ); ?> />
-                              </td>
-                           </tr>
-
-                           <?php
-                            // After the 15th feat start a new table.
-                           if ( $i == 15 ) {
-                           ?>
-
-                             </table>
-                             </td><td>
-                             <table cellspacing="0">
-                        <?php
-                           }
-                          } // for...
-                        ?>
-
-                      </table>
-
-                    </td>
-
-                  </tr>
-                </table>
+              <td id="gearcontainer">
 
                 <table id="gear" cellspacing="0">
                   <tr class="title">
@@ -826,7 +835,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="unit"><a href="javascript:GearSort(GearSort.ByLoc)" title="Sort by Location">Loc</a></td>
                   </tr>
 
-<?php for ( $i = 1; $i <= 34; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
+<?php for ( $i = 1; $i <= 43; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
                   <tr class="slot">
                     <td><input class="name" type="text" <?php getnv($gearName); ?> /></td>
                     <td><input type="text" <?php getnv($gearName . 'W'); ?> onchange="CalcWeight()" /></td>
@@ -844,8 +853,65 @@ if( $firefox ) { echo '<!--'; } ?>
             </tr>
           </table> <!-- skillsandgear -->
 
-          <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
-          <label for="magiccheck">Display Spells &amp; Powers</label>
+          <p style="page-break-before: always;"/>
+                <!--
+                  table#feats is the feats table.
+                -->
+                <table id="feats">
+                  <tr class="title">
+                    <td colspan="3"><?php GetStaticHelp( "Feats", $staticHelp ); ?> &amp; <?php GetStaticHelp( "Special Abilities", $staticHelp ); ?></td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <!--
+                        Keep each column in a table to enforce a vertical tab order.
+                        It's easier to do this rather than specify the tab order of
+                        each of the thousand or so inputs.
+                      -->
+
+                      <table cellspacing="0">
+                        <?php
+
+                         // Loop 30 times and output the feats/abilities lines.
+                         for ( $i = 1; $i <= 51; $i++ ) {
+                           $featName = sprintf( "Feat%02d", $i );
+                         ?>
+
+                           <tr>
+                              <td class="featshelp">
+                                 <a href="#" name="<?php echo $featName; ?>Link"
+                                        onclick="ShowHelp('<?php echo $featName; ?>');return false;"></a>
+                              </td>
+                              <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
+                                         <?php getnv( $featName ); ?> />
+                              </td>
+                           </tr>
+
+                           <?php
+                            // After the 17th and 34th feat start a new table.
+                           if ( $i == 17 || $i == 34 ) {
+                           ?>
+
+                             </table>
+                             </td><td>
+                             <table cellspacing="0">
+                        <?php
+                           }
+                          } // for...
+                        ?>
+
+                      </table>
+
+                    </td>
+
+                  </tr>
+                </table>
+
+
+          <p />
+          <p><input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;"/>
+          Display Spells &amp; Powers</p>
           <div id="magic">
 
           <p style="page-break-before: always; "/>
@@ -883,7 +949,7 @@ if( $firefox ) { echo '<!--'; } ?>
                   <?php } else { ?>
                     <td><input type="text" <?php getnv('BonusSpells' . $i); ?> /></td>
                   <?php } ?>
-                    <td><input type="text" readonly style="border:none; font-size:1em;" <?php getnv('SpellCast' . $i); ?>/></td>
+                    <td><input type="text" readonly="readonly" style="border:none; font-size:1em;" <?php getnv('SpellCast' . $i); ?>/></td>
                   </tr>
 
                   <?php } ?>
@@ -911,41 +977,51 @@ if( $firefox ) { echo '<!--'; } ?>
               </td>
               <td class="list" rowspan="3">
 
-                <table class="spellsHeader" cellspacing="0">
+                <table id="spells" cellspacing="0">
                   <tr class="title">
-                    <td class="scrollerArrow"><a href="#" id="prevSpellsArrow" class="disabled" onclick="prevSpellPage(); return false;">&larr;</a></td>
-                    <td><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
-                    <td class="scrollerArrow"><a href="#" id="nextSpellsArrow" onclick="nextSpellPage(); return false;">&rarr;</a></td>
+                    <td colspan="3"><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
+                  </tr>
+                  <tr>
+
+         <?php
+          for ( $i = 1; $i <= 90; $i++ ) {
+            $spellName = sprintf( "Spell%02d", $i );
+            if ( $i % 30 == 1 ) { ?>
+
+                    <td>
+                      <table cellspacing="0" class="spelllist">
+                        <tr class="header">
+                          <td>&nbsp;</td>
+                          <td><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name">Spell Name</a></td>
+                          <td><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level">Level</a></td>
+                          <td class="mem"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested"># Cast<br />/Mem</a></td>
+                        </tr>
+      <?php } ?>
+
+                        <tr>
+                          <td>
+                             <a href="#" name="<?php echo $spellName; ?>Link"
+                                  onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></a>
+                          </td>
+                          <td class="name"><input type="text" <?php getnv($spellName); ?>
+                              onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></td>
+                          <td class="mem"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></td>
+                          <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></td>
+                        </tr>
+
+                     <?php
+                          if ( $i % 30 == 0 )
+                          {
+                     ?>
+
+                      </table>
+                    </td>
+                     <?php
+                          }
+                       }
+                     ?>
                   </tr>
                 </table>
-                <div id="spellScrollWrapper">
-                    <div id="spellScroller">
-                    
-    
-             <?php
-              for ( $i = 1; $i <= 300; $i++ ) {
-                $spellName = sprintf( "Spell%02d", $i );
-                if ( $i % 30 == 1 ) { ?>
-                        <div class="spellColumn">
-                            <div class="spellHeaderRow">
-                                <div class="spellHelp">&nbsp;</div>
-                                <div class="spellName"><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name"><br/>Spell Name</a></div>
-                                <div class="spellLevel"><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level"><br/>Level</a></div>
-                                <div class="spellCast"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested">Cast<br />Mem</a></div>
-                            </div>
-                <?php } ?>
-                            <div class="spellRow">
-                                <div class="spellHelp"><a href="#" name="<?php echo $spellName; ?>Link" onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></a></div>
-                                <div class="spellName"><input type="text" <?php getnv($spellName); ?> onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></div>
-                                <div class="spellLevel"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></div>
-                                <div class="spellCast"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></div>
-                            </div>
-                <?php if ( $i % 30 == 0 ) { ?>
-                        </div>
-                <?php } ?>
-              <?php } ?>
-                    </div>
-                </div>
 
               </td>
             </tr>
@@ -971,8 +1047,8 @@ if( $firefox ) { echo '<!--'; } ?>
                <td><input onchange="SumCash();" class="cash" <?php getnv('CashSPParty' ); ?> /> sp</td></tr>
            <tr><td><input onchange="SumCash();" class="cash" <?php getnv('CashCP' ); ?> /> cp</td>
                <td><input onchange="SumCash();" class="cash" <?php getnv('CashCPParty' ); ?> /> cp</td></tr>
-           <tr><td colspan="2"><hr></td></tr>
-           <tr><td><input class="cash" readonly <?php getnv('CashTotal' ); ?> /> gp</td>
+           <tr><td colspan="2"><hr /></td></tr>
+           <tr><td><input class="cash" readonly="readonly" <?php getnv('CashTotal' ); ?> /> gp</td>
                <td><input class="cash" <?php getnv('CashTotalParty' ); ?> /> gp</td></tr>
           </table>
             <textarea <?php getn('Cash'); ?> style="width:160px; height:50px;"><?php getv('Cash'); ?></textarea></td>
@@ -992,7 +1068,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
           <!-- Private notes will not be displayed unless we are in edit mode -->
           <?php if ($SHOWSAVE) { ?>
-          <table id="notes">
+          <table id="privatenotes">
             <tr class="header">
               <td>
                 Private Notes <span>(Will not be displayed publically)</span>
@@ -1005,16 +1081,12 @@ if( $firefox ) { echo '<!--'; } ?>
           <?php } ?>
 
           <div id="footer">
-            <TABLE width="100%" cellspacing="0">
-               <TR>
-                  <TD>Last saved = <?php getv("LastSaveDate"); ?></TD>
-                  <TD align="right">3.5 sheet Deeg &amp; Tarlen.</TD>
-               </TR>
-               <TR>
-                  <TD></TD>
-                  <TD align="right">d20 SRD help created by Jans Carton.</TD>
-               </TR>
-            </TABLE>
+            <table width="100%" cellspacing="0">
+               <tr>
+                  <td>Last saved = <?php getv("LastSaveDate"); ?></td>
+                  <td align="right">Pathfinder sheet jjwolven &amp; Birched.</td>
+               </tr>
+            </table>
           </div>
 
           <?php if ($SHOWSAVE) { ?>

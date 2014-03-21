@@ -25,7 +25,8 @@ input
 body 
 {
   margin: auto;
-  width: 7in;
+  margin-top: 0.5in;
+  width: 7.5in;
 }
 
 #buttons {
@@ -98,6 +99,10 @@ body
 #info td.unit
 {
   width: 12.5%;
+}
+#info td.smallunit
+{
+  width: 6.25%;
 }
 
 /************************************************************************/
@@ -335,13 +340,27 @@ body
   width: 100%;
   margin: 2em 0 2em 0;
 }
+#attacks td.basenum
+{
+  width: 2em;
+}
+#attacks td.basenum span
+{ 
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
 #attacks td.wide
 {
   width: 20%;
 }
+#attacks td.medwide
+{
+  width: 12%;
+}
 #attacks td.unit
 {
-  width: 8%;
+  width: 9%;
 }
 #attacks td.char
 {
@@ -382,6 +401,10 @@ body
   font-size: 14px;
   font-weight: bold;
   font-family: Arial, sans-serif;
+}
+#attacks td.gray
+{
+  background-color: gray;
 }
 #attacks span.help
 {
@@ -505,7 +528,7 @@ table.weapon input.left
 }
 #skillcontainer
 {
-  width: 50%;
+  width: 55%;
 }
 #skillsandgear .spacer
 {
@@ -643,7 +666,7 @@ table.weapon input.left
   text-decoration: underline;
 }
 
-#featsandgearcontainer
+#gearcontainer
 {
   vertical-align: top;
 }
@@ -670,7 +693,7 @@ table.weapon input.left
 }
 #feats td
 {
-  width: 50%;
+  width: 34%;
 }
 #feats table
 {
@@ -699,7 +722,7 @@ table.weapon input.left
 #gear
 {
   width: 100%;
-  margin: 9px 0 0 0;
+  margin: 0;
 }
 #gear span.help
 {
@@ -890,18 +913,18 @@ table.weapon input.left
   font-size: 9px;
 }
 
-#spells, table.spellsHeader
+#spells
 {
   width: 98%;
-  margin-left: 10px;
+  margin-left: 2%;
 }
-#spells span.help, table.spellsHeader span.help
+#spells span.help
 {
   cursor: help;
   color: white;
   background-color: black;
 }
-#spells tr.title td, table.spellsHeader tr.title td
+#spells tr.title td
 {
   background-color: black;
   color: white;
@@ -937,72 +960,43 @@ table.weapon input.left
   text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-div.spellColumn {
-	float: left;
-	display: block;
-	width: 163px;
+#spells table.spelllist td
+{
+  padding: 1px 2px 0 2px;;
 }
-div.spellColumn div.spellHeaderRow {
-    clear: both;
+#spells table.spelllist
+{
+  width: 100%;
+  margin-top: 1em;
 }
-div.spellColumn div.spellHeaderRow a {
-    color: black;
-    text-decoration: none;	
+#spells table.spelllist tr.header td
+{
+  background-color: white;
+  color: gray;
+  vertical-align: bottom;
 }
-div.spellColumn div.spellRow {
-    clear: both;
+#spells table.spelllist tr.header td.mem
+, #spells table.spelllist tr td.mem input
+{
+  width: 100%;
+  text-align: center;
 }
-div.spellColumn input {
-    border-style: solid;
-    border-color: black;
-    border-width: 0 0 1px 0;
-    font-size: 9px;
+#spells table.spelllist tr td.help
+{
+  cursor: help;
 }
-div.spellHelp, div.spellName, div.spellLevel, div.spellCast {
-    float: left;
-    display: block;
-    margin: 0px 2px 0px 2px;
+#spells table.spelllist td.name
+{
+  width: 85%;
 }
-div.spellHelp {
-    width: 6px;
-    padding-top: 2px;
-    text-align: right;
-    margin-left: 3px;
-    margin-right: 1px;
+#spells table.spelllist input
+{
+  width: 100%;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  font-size: 9px;
 }
-div.spellHelp a {
-    color: black;
-    text-decoration: none;
-}
-div.spellName {
-	margin-left: 0px;
-    width: 100px;
-}
-div.spellName input {
-    width: 100px;
-}
-div.spellLevel, div.spellCast {
-    width: 20px;
-    text-align: center;
-}
-div.spellLevel input, div.spellCast input {
-    width: 20px;
-    text-align: center;
-}
-
-
 #spells a
 {
   color: black;
@@ -1014,39 +1008,6 @@ div.spellLevel input, div.spellCast input {
   text-decoration: underline;
 }
 
-div#spellScrollWrapper {
-  position: relative;
-  width: 491px;
-  height: 490px;
-  overflow: hidden;
-  margin-left: 10px;
-}
-
-div#spellScroller {
-  width: 1630px;
-  left: 0px;
-  position: relative;
-}
-
-div#spellScroller #spells {
-  margin: 0px;	
-}
-
-td.scrollerArrow a, td.scrollerArrow a:hover, td.scrollerArrow a:visited {
-  color: white;
-  background-color: black;
-  background: black;
-  text-decoration: none;
-}
-
-td.scrollerArrow a:hover {
-  font-weight: bold;
-}
-
-td.scrollerArrow a.disabled {
-  color: #888888;
-  text-decoration: none;
-}
 /************************************************************************/
 
 #notes
@@ -1095,6 +1056,57 @@ td.scrollerArrow a.disabled {
   font-family: Arial, sans-serif;
   padding: 2px;
 }
+
+
+#privatenotes
+{
+  width: 100%;
+  margin-top: 2em;
+}
+#privatenotes tr.header td
+{
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+#privatenotes tr.header td span
+, #privatenotes tr.header td a
+{
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-decoration: none;
+}
+#privatenotes tr.header td a:hover
+{
+  background-color: black;
+  color: white;
+  text-decoration: underline;
+}
+#privatenotes textarea
+{
+  border: 1px solid black;
+  width: 100%;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  height: 340px;
+  padding: 2px;
+}
+#privatenotes div
+{
+  border: 1px solid black;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  padding: 2px;
+}
+
+
+
 
 input.cash
 {

@@ -30,28 +30,53 @@ function MBABCalc()
   debug.trace("Calculated melee base attack bonus.");
 }
 
-// void GBABCalc(void)
-// Calculates the grapple attack bonus.
-function GBABCalc()
+// void CMBBABCalc(void)
+// Calculates the Combat Maneuver attack bonus.
+function CMBBABCalc()
 {
   if (disable_autocalc())
     return;
     
   ZeroFill(
-    sheet().GABBase,
-    sheet().GABStr,
-    sheet().GABSize,
-    sheet().GABMisc,
-    sheet().GABTemp);
+    sheet().CMBBase,
+    sheet().CMBStr,
+    sheet().CMBSize,
+    sheet().CMBMisc,
+    sheet().CMBTemp);
 
-  sheet().GBAB.value = ParsedAdd(
-    sheet().GABBase.value,
-    sheet().GABStr.value,
-    sheet().GABSize.value,
-    sheet().GABMisc.value,
-    sheet().GABTemp.value);
+  sheet().CMBBAB.value = ParsedAdd(
+    sheet().CMBBase.value,
+    sheet().CMBStr.value,
+    sheet().CMBSize.value,
+    sheet().CMBMisc.value,
+    sheet().CMBTemp.value);
 
-  debug.trace("Calculated grapple base attack bonus.");
+  debug.trace("Calculated CMB.");
+}
+
+// void CMDBABCalc(void)
+// Calculates the Combat Maneuver attack bonus.
+function CMDBABCalc() {
+    if (disable_autocalc())
+        return;
+
+    ZeroFill(
+    sheet().CMDBase,
+    sheet().CMDStr,
+    sheet().CMDDex,
+    sheet().CMDSize,
+    sheet().CMDMisc,
+    sheet().CMDTemp);
+
+    sheet().CMDBAB.value = 10 + Clean(ParsedAdd(
+    sheet().CMDBase.value,
+    sheet().CMDStr.value,
+    sheet().CMDDex.value,
+    sheet().CMDSize.value,
+    sheet().CMDMisc.value,
+    sheet().CMDTemp.value));
+
+    debug.trace("Calculated CMD.");
 }
 
 // string ParsedAdd(string, ...)
@@ -103,33 +128,47 @@ function RBABCalc()
 // void SetBAB(node)
 // Sets the MABBase input if the node passed is the RABBase input, or
 // vice versa, then trigger the other inputs onchange event.
-//
-// Now handles GABBase as well.
 function SetBAB(node)
 {
+  var mod = node.value;
   if (node.name == "MABBase")
   {
-    sheet().RABBase.value = node.value;
-    sheet().GABBase.value = node.value;
+    sheet().RABBase.value = mod;
+    sheet().CMBBase.value = mod;
+    sheet().CMDBase.value = mod;
     debug.trace("Copied BAB to the Grapple/Ranged BAB input.");
     RBABCalc();
-    GBABCalc();
+    CMDBABCalc();
+    CMBBABCalc();
   }
-  else if (node.name == "GABBase")
+  else if (node.name == "CMDBase")
   {
-    sheet().MABBase.value = node.value;
-    sheet().RABBase.value = node.value;
+    sheet().MABBase.value = mod;
+    sheet().RABBase.value = mod;
+    sheet().CMBBase.value = mod;
     debug.trace("Copied BAB to Melee/Range BAB input.");
     MBABCalc();
     RBABCalc();
-  }
+    CMBBABCalc();
+}
+else if (node.name == "CMBBase") {
+    sheet().MABBase.value = mod;
+    sheet().RABBase.value = mod;
+    sheet().CMDBase.value = mod;
+    debug.trace("Copied BAB to Melee/Range BAB input.");
+    MBABCalc();
+    RBABCalc();
+    CMDBABCalc();
+}
   else if (node.name == "RABBase")
   {
-    sheet().MABBase.value = node.value;
-    sheet().GABBase.value = node.value;
+    sheet().MABBase.value = mod;
+    sheet().CMBBase.value = mod;
+    sheet().CMDBase.value = mod;
     debug.trace("Copied BAB to Melee/Grapple BAB input.");
     MBABCalc();
-    GBABCalc();
+    CMDBABCalc();
+    CMBBABCalc();
   }
   else
     debug.traceErr("Incorrect node passed to <code>SetBAB</code>");

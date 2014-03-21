@@ -13,7 +13,7 @@ var m_names = new Array("January", "February", "March",
 // Returns the number of skills listed in the Skills table.
 function SkillsCount()
 {
-    return document.getElementById("skills").rows.length - 6;
+    return document.getElementById("skills").rows.length - 3;
 }
 
 // void init(void)
@@ -44,20 +44,20 @@ function init()
   for (var i = 1; i <= slots; i++)
   {
     var num = FormatNumber(i);
-     CheckForHelp( "Skill" + num );
+    CheckForHelp( "Skill" + num );
 
     CheckSkillAttribute( sheet()[ "Skill" + num ] );
   }
 
   // Set the link for the feats and special abilities.
-  for (var i = 1; i <= 30; i++)
+  for (var i = 1; i <= 34; i++)
   {
     var num = FormatNumber(i);
      CheckForHelp( "Feat" + num );
   }
 
-  // Set the link for the spells.
-  for (var i = 1; i <= 300; i++)
+  // Set the link for the feats and special abilities.
+  for (var i = 1; i <= 90; i++)
   {
     var num = FormatNumber(i);
      CheckForSpellHelp( "Spell" + num );
@@ -84,18 +84,18 @@ function SetSaveDate()
 }
 
 function Save() {
-    $('processing').setStyle({display:'block'});
+    document.getElementById('processing').style.display = 'block';
     $('charactersheet').request({
         method: 'post',
         onComplete: function(transport) {
-            $('processing').setStyle({display:'none'});
+            document.getElementById('processing').style.display = 'none';
             if( transport.responseText == 'SUCCESS' ) { 
                 alert('Character saved!');
             } else {
                 alert('Error: ' + transport.responseText);
             }
         }
-    });
+    })
 }
 
 function CheckDisplay() {
