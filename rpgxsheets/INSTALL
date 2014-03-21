@@ -1,0 +1,136 @@
+------------------ RPG Web Profiler Installation Instructions -----------------
+
+The aim of the application is to allow people to host character sheets for RPG games online.
+
+===================================
+Contents
+===================================
+
+1. Requirements
+2. Downloading
+3. Setting up MySQL
+4. Installing RPG Web Profiler
+4.1. Installing with an Apache Alias
+4.2. Installing in an existing Web folder
+
+===================================
+1. Requirements
+===================================
+
+PHP v4.3 - 
+  There are reports of the profiler working on PHP v5, but at the 
+  time of writing, PHP v5 is not officially supported.
+
+Apache 2.x -
+  The profiler should be able to be installed with Apache 1, but 
+  this configuration is not supported.
+
+MySQL 4+ -
+  
+===================================
+2. Downloading
+===================================
+
+The latest release of the profiler can be downloaded from the Sourceforge project,
+at http://sourceforge.net/projects/rpgwebprofiler/
+
+Files downloaded should always be named rpgwebprofiler-x.x.x.tgz
+
+If you want the development version, this can be downloaded from the Subversion repository
+in the above project. 
+
+===================================
+3. Set up the MySQL database
+===================================
+
+Create a MySQL database however you would do this. Use mysqladmin on the command line, or 
+whatever console you have if you are using a public hosting service.
+
+Execute the setup-mysqldb.sql script on the database.
+
+Eg:
+
+mysql -u mydbuser -pmydbpassword profiler < setup-mysqldb.sql
+
+This creates all the RPG Web Profiler tables, and default data.
+
+===================================
+4. Installing RPG Web Profiler
+===================================
+
+Before installation, you should extract the application into a temporary directory.
+
+You can either install the application using an Apache Alias directive, or into an 
+existing web folder. If you have access to the Apache configuration, it is recommended
+that you install using an Alias, as this keeps the two RPG Web Profiler folders together,
+and requires fewer configuration edits to get running. If you can install using an Alias,
+you should follow the instructions in section 4.1.
+
+However, if you are installing on a hosting service, and do not have access to the Apache
+configuration, you will need to follow the instructions in section 4.2 to set up the
+profiler in an existing web folder.
+
+NOTE: Regardless of how you set up the application, you should be careful to ensure that 
+the root_profiler folder is NOT located in a web accessible folder. This can cause security
+problems.
+
+-----------------------------------
+4.1. Using an Apache Alias
+-----------------------------------
+
+For these instructions, the examples will show the profiler installed in /home/tarlen/profiler.
+Adjust this folder as necessary for your installation.
+
+1. Create the folder for installation (/home/tarlen/profiler)
+2. Copy all the contents of the archive from the temporary directory into /home/tarlen/profiler
+3. In the /home/tarlen/profiler/root_profiler directory, copy system-default.php to system.php
+4. Edit the newly created system.php as follows:
+
+   $DB_HOST = 'localhost';
+   $DB_USER = 'mydbuser';
+   $DB_PWD = 'mydbpassword';
+   $DB = 'profiler';
+   $URI_BASE = 'http://www.mywebsite.url/profiler/';
+
+5. Create the following entry in my Apache configuration.
+
+   Alias /profiler "/home/tarlen/profiler/public_profiler"
+
+   <Directory "/home/tarlen/profiler/public_profiler">
+     AllowOverride All
+
+     Order allow,deny
+     Allow from all
+   </Directory>
+
+6. Restart Apache. The RPG Web Profiler should now be working.
+
+-----------------------------------
+4.2. In an Existing Web Folder
+-----------------------------------
+
+For these instructions, the examples will show the profiler installed with an existing Apache
+web folder at /home/tarlen/html.
+
+
+1. Create the folder for the public files (/home/tarlen/html/profiler)
+2. Copy the contents of the public_profiler directory into /home/tarlen/html/profiler
+3. Create the folder for the engine files (/home/tarlen/root_profiler)
+   ** NOTE: THIS FOLDER MUST NOT BE ACCESSIBLE VIA THE INTERNET.
+
+4. Copy the contents of the root_profiler directory into /home/tarlen/root_profiler
+5. In the /home/tarlen/root_profiler directory, copy system-default.php to system.php
+6. Edit the newly created system.php as follows:
+
+   $DB_HOST = 'localhost';
+   $DB_USER = 'mydbuser';
+   $DB_PWD = 'mydbpassword';
+   $DB = 'profiler';
+   $URI_BASE = 'http://www.mywebsite.url/profiler/';
+
+7. Edit the /home/tarlen/html/profiler/config.php file as follows:
+
+   $INCLUDE_PATH = '/home/tarlen/root_profiler';
+
+8. The RPG Web Profiler should now be working.
+

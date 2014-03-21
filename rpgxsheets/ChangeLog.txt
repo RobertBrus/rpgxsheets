@@ -1,0 +1,76 @@
+===========================================
+Development
+===========================================
+
+- Removed WEB_INSTALL and BASE_INSTALL parameters from system.php
+  These parameters are no longer required.
+- Changed Character Images page to work from current directory.
+- Tidied up system-default.php
+
+===========================================
+v0.4.0 - 1 August 2006
+===========================================
+
+- Changes for PHP 5 compatibility.
+- Changes for MySQL 5 compatibility.
+- Increased length of password field to cater for MySQL 4.1+ new password hash.
+- Added code to check both new and old password hash to allow for migration to MySQL database with new hashing.
+- Added more stats.
+- Small fixes to D&D 3.5e and Serenity character sheets.
+
+===========================================
+v0.3.0 - 12 July 2006
+===========================================
+
+- Changed characters to have single owner.
+- Character editing permissions can now be removed.
+- Characters owned by different profiles show with * prefix in character list.
+- Only character owner can set public permissions and add/remove editors.
+- Added Transfer Character function, to change owners.
+- Added DM Function checkbox to Profile screen.
+- Added Campaign Functionality.
+  - Users with DM Functions enabled can create campaigns.
+  - Can search on campaign names, and see information on available campaigns.
+  - Characters can request to join, or can be invited to join.
+  - Campaign Owner (DM) automatically gains full edit permissions to all 
+    participating characters.
+- Tidied up search functionality.
+
+The major change for this release is the Campaign functionality. Users can set
+up campaigns, and characters can be added to those campaigns either by request
+or invitation. All requests and invitations must be accepted by both the 
+character and the campaign owner (DM) before the character is added.
+
+One of the advantages of the Campaign functionality is that the DM
+automatically gets edit permissions for all characters, but does not gain the
+ability to change details such as whether or not the character is public.
+
+===========================================
+v0.2.0 - 28 June 2006
+===========================================
+
+- Removed Smarty Templates
+- New Admin Options
+  - SITE_CSS: Change the CSS file in use to make updates easier
+  - SITE_NEWS: Change the file used to display news.
+  - NEW_WINDOW: Prevent Character sheets opening in a new window
+  - REQUIRE_LOGIN: Remove public access to character sheets, so only registered users can see them
+  - OPEN_REGISTRATION: Stop people from registering. Makes the site a private installation.
+  - DISPLAY_IMAGES: Show/Hide the link to the character image library
+  - DISPLAY_FAQ: Show/Hide the link to the FAQ
+- Added imgs/blank.gif for use when no LOGO image is desired.
+
+The first two admin options listed above, along with the previous renaming of
+the system configuration file within the Subversion repository are intended to 
+make future upgrade paths easier. Ideally, you should be able to extract a new
+version of the application into the install directory without then having to
+re-configure the application for your site.
+
+===========================================
+v0.1.0 - 15 June 2006
+===========================================
+
+- First release of RPG Web Profiler.
+- Re-branded application with new name
+- Some search improvements over 3eProfiler
+- Character Image library browser
