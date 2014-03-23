@@ -25,14 +25,15 @@
   <head>
     <title><?php echo $TITLE; PF ?></title>
     <link type="text/css" rel="stylesheet" href="PF/main.css" media="screen,print" />
-    <link type="text/css" rel="stylesheet" href="PF/print.css" media="print" />
+    <!-- <link type="text/css" rel="stylesheet" href="PF/print.css" media="print" /> 
     <style type="text/css" media="print">
+ 
       #save
       , #notes tr.header span
       {
           display: none;
       }
-    </style>
+    </style>-->
     <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
     <script type="text/javascript" src="./PF/general.js"></script>
     <script type="text/javascript" src="./PF/debug.js"></script>
@@ -57,10 +58,10 @@
     <script type="text/javascript" src="./PF/class.js"></script>
     <script type="text/javascript" src="./PF/pic.js"></script>
     <script type="text/javascript" src="./PF/notes.js"></script>
+    <script type="text/javascript" src="./PF/PF_statblock.js"></script>   	
     <script type="text/javascript" src="./PF/overlib.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
-
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
  <form action="ajax_save.php" method="post" id="charactersheet">
 
@@ -83,27 +84,31 @@
 <?php
 $agent = $_SERVER['HTTP_USER_AGENT'];
 $firefox = eregi("Firefox", $agent);
-if( $firefox ) { echo '<!--'; } ?>
+if( $firefox ) { echo ''; } ?>
  
     <table id="maintable">
       <tr>
         <td>
         </td>
         <td id="main">
-<?php if( $firefox ) { echo '-->'; } ?>
+<?php if( $firefox ) { echo ''; } ?>
           <!--
             table#info contains all the general information on the
             character that's found at the top of the character sheet.
           -->
+		  <div class="break">
           <table id="logos"> 
           <tr>
-<td>
-
-<a href="/" target="_blank"><img src="./PF/logowithtext_white.png" border="0" alt="rpgcrossing.com" width="100" /></a>
-<img src="./PF/pathfinder-logo-text2.gif" alt="pathfinder sheet" width="109" height="12" />
 
 
+<td class="edition">
+<a href="/" target="_blank"><img src="./PF/logowithtext_white.png" border="0" alt="rpgcrossing.com" width="100" /></a></br>
+<!-- <img src="./PF/pathfinder-logo-text2.gif" alt="pathfinder sheet" width="109" height="12" /> -->
+PATHFINDER
 </td>
+
+
+
 <td>
           <table id="info" cellspacing="0">
             <tr>
@@ -227,12 +232,12 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td><input type="text" <?php getnv('ChaTemp'); ?> class="tempmod" onchange="OnAbilityChanged(this)" /></td>
                     <td><input type="text" <?php getnv('ChaTempMod'); ?> class="tempmod" /></td>
                   </tr>
-             <tr>
-          <td colspan="5">&nbsp;</td>
+        <tr>
+		<td class="tag" colspan="3"><?php GetStaticHelp( "HERO POINTS", $staticHelp ); ?></td>		
+		<td colspan="2"><input type="text" class="mod" <?php getnv('AP'); ?> /></td>
         </tr>
-                  <tr>
-                    <td class="tag" colspan="3"><?php GetStaticHelp( "ACTION POINTS", $staticHelp ); ?></td>
-          <td colspan="2"><input type="text" class="mod" <?php getnv('AP'); ?> /></td>
+        <tr>
+             	<td colspan="5">&nbsp;</td>
         </tr>
         </table> <!-- statblock -->
 
@@ -355,7 +360,7 @@ if( $firefox ) { echo '<!--'; } ?>
                 <table id="imgload">
                   <tr>
                     <td rowspan="7" class="piccell"><img id="pic" src="PF/click.png" alt="Character Portrait" onclick="SetPic()" /></td>
-                    <td class="loadtext title"><?php GetStaticHelp( "Total Weight", $staticHelp ); ?></td>
+                    <td class="loadtext title"><?php GetStaticHelp( "Total Weight", $staticHelp, "helplink"); ?></td>
                     <td><input type="text" <?php getnv('TotalWeight'); ?> /></td>
                   </tr>
                   <tr>
@@ -581,12 +586,6 @@ if( $firefox ) { echo '<!--'; } ?>
      </tr>
      </table> <!-- attacks -->
 
-<!-- THIS SEEMS TO BE INCORRECT?
-     </td></tr>
-          </table>
--->
-
-
           <!--
             table.weapon are weapon slots.
           -->
@@ -690,8 +689,8 @@ if( $firefox ) { echo '<!--'; } ?>
           <?php
           }
           ?>
-
-          <p style="page-break-before: always;"/>
+          </div>
+          <div class="break">
 
 
           <!--
@@ -852,8 +851,8 @@ if( $firefox ) { echo '<!--'; } ?>
               </td>
             </tr>
           </table> <!-- skillsandgear -->
-
-          <p style="page-break-before: always;"/>
+		  </div>
+          <div class="break">
                 <!--
                   table#feats is the feats table.
                 -->
@@ -912,9 +911,11 @@ if( $firefox ) { echo '<!--'; } ?>
           <p />
           <p><input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;"/>
           Display Spells &amp; Powers</p>
-          <div id="magic">
+          </div>
+		  <div class="break">
+		  <div id="magic">
 
-          <p style="page-break-before: always; "/>
+          
 
           <!--
             Page 3 stuff, Spell Saves, Spells & Powers, Currency, Language...
@@ -984,9 +985,9 @@ if( $firefox ) { echo '<!--'; } ?>
                   <tr>
 
          <?php
-          for ( $i = 1; $i <= 90; $i++ ) {
+          for ( $i = 1; $i <= 135; $i++ ) {
             $spellName = sprintf( "Spell%02d", $i );
-            if ( $i % 30 == 1 ) { ?>
+            if ( $i % 45 == 1 ) { ?>
 
                     <td>
                       <table cellspacing="0" class="spelllist">
@@ -1010,7 +1011,7 @@ if( $firefox ) { echo '<!--'; } ?>
                         </tr>
 
                      <?php
-                          if ( $i % 30 == 0 )
+                          if ( $i % 45 == 0 )
                           {
                      ?>
 
@@ -1028,7 +1029,8 @@ if( $firefox ) { echo '<!--'; } ?>
           </table>
      </div>
 
-     <p style="page-break-before: always;"/>
+	 </div>
+     <div class="break">
 
      <table id="notes">
        <tr class="header">
@@ -1052,7 +1054,7 @@ if( $firefox ) { echo '<!--'; } ?>
                <td><input class="cash" <?php getnv('CashTotalParty' ); ?> /> gp</td></tr>
           </table>
             <textarea <?php getn('Cash'); ?> style="width:160px; height:50px;"><?php getv('Cash'); ?></textarea></td>
-              <td rowspan="2"><textarea <?php getn('Notes'); ?> style="width:500px; height:370px;"><?php getv('Notes'); ?></textarea></td>
+              <td rowspan="2"><textarea name="Notes" title="Notes" style="width:500px; height:500px;"><?php getv('Notes'); ?></textarea></td>
        </tr>
             <tr>
          <td>
@@ -1066,26 +1068,55 @@ if( $firefox ) { echo '<!--'; } ?>
             </tr>
      </table>
 
-          <!-- Private notes will not be displayed unless we are in edit mode -->
-          <?php if ($SHOWSAVE) { ?>
-          <table id="privatenotes">
-            <tr class="header">
-              <td>
-                Private Notes <span>(Will not be displayed publically)</span>
-              </td>
-            </tr>
-            <tr>
-              <td><textarea <?php getn('PrivateNotes'); ?> cols="10" rows="5"><?php getv('PrivateNotes'); ?></textarea></td>
-            </tr>
-          </table>
+	<!-- Private notes and Stat Block will not be displayed unless we are in edit mode -->
+		<?php if ($SHOWSAVE) { ?>
+				  
+	<table id="statsummary" onmouseover="Show('statblockcontext', true)" onmouseout="Show('statblockcontext', false)" style="width: 100%;">
+		<tr class="header">
+			<td colspan="2">
+				Statistic Block 
+				<span id="statblockcontext">
+					[ <a href="javascript:GenerateStatblock()" title="Fill the Statblock with your current character's statistics.">Generate Statblock</a> ]
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><textarea name="statsummary" title="statsummary" cols="10" rows="20" style="height:260px;"><?php getv('statsummary'); ?></textarea></td>
+		</tr>
+		<tr class="header">
+			<td width="50%">Conditions</td>
+			<td width="50%">Additional Stat Block Information</td>
+		</tr>
+		<tr>
+			<td width="25%"><textarea  name="text1" title="text1" cols="10" rows="10"><?php getv('text1'); ?></textarea></td>
+			<td width="25%"><textarea  name="text2" title="text2" cols="10" rows="10"><?php getv('text2'); ?></textarea></td>
+		</tr>
+	</table>
+          	  
+          	  
+	<table id="notes">
+		<tr class="header">
+			<td>
+				Private Notes <span>(Will not be displayed publically)</span>
+			</td>
+		</tr>
+		<tr>
+			<td><textarea  name="PrivateNotes" title="PrivateNotes" cols="10" rows="5"><?php getv('PrivateNotes'); ?></textarea></td>
+		</tr>
+	</table>
+	
           <?php } ?>
 
           <div id="footer">
             <table width="100%" cellspacing="0">
                <tr>
-                  <td>Last saved = <?php getv("LastSaveDate"); ?></td>
-                  <td align="right">Pathfinder sheet jjwolven &amp; Birched.</td>
-               </tr>
+                  <td align="left">Last saved = <?php getv("LastSaveDate"); ?></td>
+                  <TD align="right">3.5 sheet RPG Crossing - 2014</TD>
+               </TR>
+               <TR>
+                  <TD></TD>
+                  <TD align="right">Piazo Pathfinder SRD help compiled by JJ Wolven</TD>
+               </TR>
             </table>
           </div>
 
@@ -1097,15 +1128,14 @@ if( $firefox ) { echo '<!--'; } ?>
           </div>
           <?php } ?>
 
-<?php if( $firefox ) { echo '<!--'; } ?>
+<?php if( $firefox ) { echo ''; } ?>
           </td>
         <td>
         </td>
       </tr>
     </table>
-<?php if( $firefox ) { echo '-->'; } ?>
-
+<?php if( $firefox ) { echo ''; } ?>
+</div>
   </form>
 
-  </body>
 </html>

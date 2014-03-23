@@ -1,32 +1,70 @@
+@charset "utf-8";
 /*
   main.css
+
+  3EProfiler (tm) character sheet source file.
+  Copyright (C) 2003  Michael J. Eggertson.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your opxion) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  **
 
   Defines the implementation of the 3EProfiler character sheet.
 */
 
 /************************************************************************/
 
-/*
-  Define the html root element, all elements will inherit from this
-  element. Defining the td element is an Explorer hack.
-*/
+@media screen {
+div.break
+{ 
+	
+}
 
-html
-{
-  font-size: 9px;
-  color: black;
-  background-color: white;
-  font-family: Tahoma, Arial, sans-serif;
 }
-input
-{
-  font-size: 13px;
+
+@page {
+margin: 0.5cm;
 }
-body 
+
+@media print {
+
+div.break {
+	page-break-after: always;
+	page-break-inside: avoid;
+}
+	
+#buttons,#save,#statsummary,#privatenotes {
+    display: none;
+}
+	
+#logos td.edition,#skills tr.title td,#feats tr.title td,#gear tr.title td,#hp td.basenum span,table.weapon tr.header td.type,table.armor tr.header td.type,#spellsaves tr.title td,#currency tr.title td,#languages tr.title td,#spells tr.title td,#statsummary tr.header td,#notes tr.header td,#privatenotes tr.header td {
+	font-size:25px;
+	color:#000;
+}
+
+#stats td.tag,#attacks td.tag {
+	font-size:25px;
+	color:#000;
+}
+
+#stats span.help,#hp span.help
 {
-  margin: auto;
-  margin-top: 0.5in;
-  width: 7.5in;
+	color:#000;
+	cursor:help
+}
+	
 }
 
 #buttons {
@@ -46,1087 +84,721 @@ body
     display: none;  
 }
 
-/*
-  Define the basic layout elements.
-*/
-
-#maintable
+html,td
 {
-  width: 100%;
+	background-color:#FFF;
+	color:#000;
+	font-family:Tahoma, Arial, sans-serif;
+	font-size:9px
 }
+
+input
+{
+	font-size:13px
+}
+
 #main
 {
-  width: 7in;
+	width:7.25in
 }
 
-#maintable td 
+#page
 {
-  font-size: 9px;
-  color: black;
-  background-color: white;
-  font-family: Tahoma, Arial, sans-serif;
+	height:10in;
+	width:7.25in
 }
 
-/************************************************************************/
-
-#info
+#logos td.edition
 {
-  width: 100%;
+	background-color:#FFF;
+	color:#000;
+	font-family:Arial, sans-serif;
+	font-size:16px;
+	font-weight:700;
+	text-align:center;
+	vertical-align:middle
 }
+
 #info td
 {
-  padding: 0 2px 0 2px;
-  margin: 0;
+	margin:0;
+	padding:0 2px
 }
+
 #info span
 {
-  letter-spacing: .1em;
-  color: gray;
-  background-color: white;
+	background-color:#FFF;
+	color:gray;
+	letter-spacing:.1em
 }
-#info span.help
-{
-  cursor: help;
-  color: black;
-}
+
 #info input
 {
-  width: 100%;
-  border-style: solid;
-  border-color: black;
-  border-width: 0 0 1px 0;
+	border-color:#000;
+	border-style:solid;
+	border-width:0 0 1px;
+	width:100%
 }
+
 #info td.unit
 {
-  width: 12.5%;
-}
-#info td.smallunit
-{
-  width: 6.25%;
+	width:12.5%
 }
 
-/************************************************************************/
-
-#stats
-{
-  width: 100%;
-  margin-top: 1em;
-}
 #stats td.unit
 {
-  width: 33.3%;
+	width:33.3%
 }
+
 #stats input
 {
-  width: 97%;
-}
-#stats td.top
-{
-  vertical-align: top;
-}
-#stats td.bottom
-{
-  vertical-align: bottom;
-}
-#stats td.header
-{
-  vertical-align: bottom;
-}
-#stats td.footer
-{
-  vertical-align: top;
-}
-#stats td.header
-, #stats td.footer
-, #stats td.title
-{
-  text-align: center;
-  color: gray;
-  background-color: white;
-}
-#stats td.tag
-{
-  vertical-align: middle;
-  text-align: center;
-  color: white;
-  background-color: black;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  width:10%;
+	width:97%
 }
 
-#stats span.help
-{
-  cursor: help;
-  color: white;
-}
-
-#stats span.helplink
-{
-  cursor: help;
-  color: gray;
-}
-
-#statblock
-{
-  width: 100%;
-}
 #statblock td
 {
-  width: 20%;
-  padding: 0;
+	padding:0;
+	width:20%
 }
+
 #statblock input
 {
-  padding: 1px;
-  text-align: center;
-}
-#statblock input.mod
-{
-  border: 1px solid black;
-}
-#statblock input.tempmod
-{
-  border: 1px solid gray;
+	padding:1px;
+	text-align:center
 }
 
-#hp
+#hp td.header span
 {
-  width: 100%;
+	color:gray;
+	text-align:center
 }
-#hp td
-{
-  padding: 0;
-  text-align: center;
-}
-#hp span.help
-{
-  cursor: help;
-  color:  white;
-}
+
 #hp td.basenum
 {
-  width: 2em;
+	width:2em
 }
-#hp td.basenum span
-{
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-}
-#hp td.unit
-{
-  width: 8%;
-}
-#hp td.char
-{
-  width: 1em;
-  text-align: center;
-}
+
 #hp td.char span
 {
-  color: black;
-  background-color: white;
+	background-color:#FFF;
+	color:#000
 }
+
 #hp input
 {
-  border: 1px solid black;
-  padding: 1px;
-  text-align: center;
+	border:1px solid #000;
+	padding:1px;
+	text-align:center
 }
 
-#init
-{
-  width: 100%;
-}
-#init td
-{
-  padding: 0;
-}
-#init td.char
-{
-  width: 1em;
-  text-align: center;
-}
-#init td.unit
-{
-  width: 20%;
-}
-#init input
-{
-  border: 1px solid black;
-  text-align: center;
-  padding: 1px;
-}
-
-#speed
-{
-  width: 100%;
-}
 #speed td
 {
-  padding: 0;
-  width: 50%;
-}
-#speed input
-{
-  border: 1px solid black;
-  text-align: center;
-  padding: 1px;
+	padding:0;
+	width:50%
 }
 
-#imgload
+#imgload piccell
 {
-  width: 100%;
+	border:1px solid #000;
+	cursor:pointer;
+	height:193px;
+	text-align:center;
+	width:125px
 }
-#imgload td
+
+#imgload span.helplink
 {
-  padding: 0;
+	color:gray;
+	text-align:center
 }
-#imgload #pic
-{
-  width: 125px;
-  height: 193px;
-  border: 1px solid black;
-  cursor: pointer;
-}
+
 #imgload td.loadtext
 {
-  padding-left: 1em;
-  text-align: left;
+	padding-left:1em;
+	text-align:center
 }
-#imgload span.help
-{
-  color: gray;
-}
-#imgload input
-{
-  border: 1px solid black;
-  text-align: center;
-}
+
 #imgload td.loadinputs
 {
-  width: 6em;
+	width:6em
 }
 
-#saves
-{
-  width: 100%;
-}
-#saves td
-{
-  padding: 0;
-}
 #saves td.unit
 {
-  width: 11%;
-}
-#saves td.char
-{
-  width: 1em;
-  text-align: center;
-}
-#saves input
-{
-  border: 1px solid black;
-  text-align: center;
+	width:11%
 }
 
-/************************************************************************/
-
-#attacks
-{
-  width: 100%;
-  margin: 2em 0 2em 0;
-}
-#attacks td.basenum
-{
-  width: 2em;
-}
-#attacks td.basenum span
-{ 
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-}
-#attacks td.wide
-{
-  width: 20%;
-}
-#attacks td.medwide
-{
-  width: 12%;
-}
-#attacks td.unit
-{
-  width: 9%;
-}
-#attacks td.char
-{
-  width: 1em;
-  text-align: center;
-}
 #attacks input
 {
-  width: 97%;
-  border: 1px solid black;
-  text-align: center;
+	border:1px solid #000;
+	text-align:center;
+	width:97%
 }
-#attacks input.temp
-{
-  border: 1px solid gray;
-}
-#attacks td.header
-{
-  vertical-align: bottom;
-}
-#attacks td.footer
-{
-  vertical-align: top;
-}
-#attacks td.header
-, #attacks td.footer
-{
-  text-align: center;
-  color: gray;
-  background-color: white;
-}
-#attacks td.tag
-{
-  vertical-align: middle;
-  text-align: center;
-  color: white;
-  background-color: black;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-}
+
 #attacks td.gray
 {
-  background-color: gray;
+	background-color:gray;
 }
-#attacks span.help
+table.weapon,table.armor
 {
-  cursor: help;
-  color: white;
+	margin-top:.5em;
+	width:100%
 }
 
-/************************************************************************/
-
-table.weapon
-, table.armor
-{
-  width: 100%;
-  margin-top: .5em;
-}
-table.weapon span.help
-{
-  color: white;
-  cursor: help;
-}
 table.weapon td.wide
 {
-  width: 45%;
+	width:30%
 }
+
 table.weapon td.medium
 {
-  width: 16%;
+	width:16%
 }
-table.weapon td.small
-{
-}
-table.armor span.help
-{
-  color: white;
-  cursor: help;
-}
+
 table.armor td.wide
 {
-  width: 60%;
+	width:52%
 }
-table.armor td.medium
-{
-  width: 10%;
-}
+
 table.armor td.small
 {
-  width: 5%;
-}
-table.weapon td
-, table.armor td
-{
-  padding: 0px;
-  border: 1px solid black;
-}
-table.weapon tr.header td
-, table.armor tr.header td
-{
-  color: white;
-  background-color: black;
-  text-align: center;
+	width:12%
 }
 
-#maintable table.weapon td.type 
+table.weapon td,table.armor td
 {
-  font-weight: bold;
-  font-size: 14px;
+	border:1px solid #000;
+	padding:0
 }
 
-table.weapon td.type, table.armor td.type
+table.weapon tr.header td,table.armor tr.header td
 {
-  font-weight: bold;
-  font-size: 14px;
-}
- 
-#maintable table.weapon tr.header td
-{
-  color: white;
-  background-color: black;
-  font-family: Tahoma, Arial, sans-serif;
+	background-color:#000;
+	color:#FFF;
+	text-align:center
 }
 
-table.weapon tr.header td, table.armor tr.header td
+table.weapon input,table.armor input
 {
-  color: white;
-  background-color: black;
-  font-family: Tahoma, Arial, sans-serif;
+	border:0 solid;
+	text-align:center;
+	width:100%
 }
 
-#maintable table.armor td.type
-{
-  font-weight: bold;
-  font-size: 14px;
-}
-
-#maintable table.armor tr.header td
-{
-  color: white;
-  background-color: black;
-  font-family: Tahoma, Arial, sans-serif;
-}
-
-table.weapon input
-, table.armor input
-{
-  width: 100%;
-  border: 0 solid;
-  text-align: center;
-}
-table.weapon input.left
-, table.armor input.left
-{
-  text-align: left;
-}
-
-/************************************************************************/
-
-#skillsandgear
-{
-  width: 100%;
-  margin-top: 2em;
-}
 #skillcontainer
 {
-  width: 55%;
+	width:50%
 }
+
 #skillsandgear .spacer
 {
-  width: .5em;
+	width:.5em
 }
 
-#skills
-{
-  width: 100%;
-}
 #skills span.help
 {
-  cursor: help;
-  color: white;
-  background-color: black;
+	background-color:#000;
+	color:#FFF;
+	cursor:help
 }
-#skills span.helplink
-{
-  cursor: help;
-}
+
 #skills tr.title td
 {
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  color: white;
-  background-color: black;
-  vertical-align: middle;
-  padding: 1px 1px 1px .5em;
+	background-color:#000;
+	color:#FFF;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700;
+	padding:1px 1px 1px .5em;
+	vertical-align:middle
 }
+
 #skillranks
 {
-  float: right;
-  width: 13em;
-  font-size: 9px;
-  font-weight: bold;
-  padding: .1em;
+	float:right;
+	font-size:9px;
+	font-weight:700;
+	padding:.1em;
+	width:13em
 }
+
 #skillranks div
 {
-  float: right;
-  width: auto;
-  color: black;
-  background-color: white;
+	background-color:#FFF;
+	color:#000;
+	float:right;
+	width:auto
 }
+
 #skillranks input
 {
-  font-size: 9px;
-  width: 3em;
-  border: 0 solid;
-  color: black;
-  background-color: white;
-  padding: 1px;
-  text-align: center;
+	background-color:#FFF;
+	border:0 solid;
+	color:#000;
+	font-size:9px;
+	padding:1px;
+	text-align:center;
+	width:3em
 }
+
 #skillcontext
 {
-  font-size: 10px;
-  visibility: hidden;
+	font-size:10px;
+	visibility:hidden
 }
+
 #skills tr.title span a
 {
-  color: white;
-  background-color: black;
+	background-color:#000;
+	color:#FFF
 }
-#skills tr.title span a:hover
-{
-  text-decoration: underline;
-}
+
 #skills tr.header td
 {
-  text-align: center;
-  vertical-align: bottom;
+	text-align:center;
+	vertical-align:bottom
 }
-#skills tr.header td.name
-{
-  text-align: left;
-}
-#skills tr.header span.help
-{
-  cursor: help;
-}
-#skills tr.skillslot td
-{
-  padding: 1px 1px 0 1px;
-}
+
 #skills tr.skillslot td.name
 {
-  padding: 1px 3px 0 1px;
+	padding:1px 3px 0 1px;
+	border-bottom:1px solid #000;
 }
+
 #skills tr.skillslot td.char
 {
-  width: 1em;
+	width:1em;
+	border-bottom:1px solid #000;
 }
+
 #skills tr.skillslot td.unit
 {
-  width: 2.5em;
+	width:2.5em;
+	border-bottom:1px solid #000;
 }
+
 #skills tr.skillslot input.text
 {
-  width: 100%;
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  font-size: 9px;
-  text-align: center;
+	border-bottom:1px solid #000;
+	border-style:none;
+	border-top:1px solid #FFF;
+	font-size:9px;
+	text-align:center;
+	width:100%
 }
-#skills tr.skillslot td.name input
-{
-  text-align: left;
-}
+
 #skills tr.skillslot input.chk
 {
-  height: 10px;
-  width: 10px;
-}
-#skills tr.footer td
-{
-  color: gray;
-  background-color: white;
-  text-align: left;
-}
-#skills tr.footer td.total
-{
-  text-align: center;
-}
-#skills a
-{
-  color: black;
-  background-color: white;
-  text-decoration: none;
-}
-#skills a:hover
-{
-  text-decoration: underline;
+	height:10px;
+	width:10px
 }
 
-#gearcontainer
-{
-  vertical-align: top;
-}
-
-#feats
-{
-  width: 100%;
-}
-
-#feats span.help
-{
-  cursor: help;
-  color: white;
-}
 #feats tr.title td
 {
-  color: white;
-  background-color: black;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  padding: 1px 1px 1px .5em;
-}
-#feats td
-{
-  width: 34%;
-}
-#feats table
-{
-  width: 100%;
-}
-#feats table td
-{
-  width: 100%;
-  padding: 1px 1px 0 1px;
-}
-#feats input
-{
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  font-size: 9px;
-  width: 100%;
-  text-align: left;
-}
-#feats td.featshelp
-{
-  width: 3%;
+	background-color:#000;
+	color:#FFF;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700;
+	padding:1px 1px 1px .5em;
+	text-align:center
 }
 
+#gear input
+{
+	border-bottom:1px solid #000;
+	border-style:none;
+	border-top:1px solid #FFF;
+	border-bottom: 1px solid #000;
+	font-size:9px;
+	text-align:center;
+	width:100%
+}
+
+#feats input
+{
+	border-bottom:1px solid #000;
+	border-style:none;
+	border-top:1px solid #FFF;
+	border-bottom: 1px solid #000;
+	font-size:9px;
+	text-align:left;
+	width:100%
+}
 
 #gear
 {
-  width: 100%;
-  margin: 0;
+	margin:9px 0 0;
+	width:100%
 }
-#gear span.help
-{
-  cursor: help;
-  color: white;
-  background-color: black;
-}
+
 #gear tr.title td
 {
-  color: white;
-  background-color: black;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
+	background-color:#000;
+	color:#FFF;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700;
+	text-align:center
 }
+
 #gear tr.header td
 {
-  vertical-align: bottom;
-  text-align: center;
+	text-align:center;
+	vertical-align:bottom
 }
-#gear tr.header td.name
-{
-  text-align: left;
-}
-#gear tr.header span.help
-{
-  cursor: help;
-}
-#gear tr.slot td
-{
-  padding: 1px 2px 0 2px;
-}
+
 #gear td.unit
 {
-  width: 5em;
-}
-#gear input
-{
-  width: 100%;
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  text-align: center;
-  font-size: 9px
-}
-#gear input.name
-{
-  text-align: left;
-}
-#gear tr.footer td
-{
-  color: gray;
-  background-color: white;
-  text-align: left;
-}
-#gear tr.footer td.total
-{
-  text-align: center;
-}
-#gear a
-{
-  color: black;
-  background-color: white;
-  text-decoration: none;
-}
-#gear a:hover
-{
-  text-decoration: underline;
+	width:5em
 }
 
-/************************************************************************/
-
-#spellstuff
-{
-  width: 100%;
-  margin-top: 2em;
-}
 #spellstuff td.saves
 {
-  width: 25%;
-  vertical-align: top;
+	vertical-align:top;
+	width:25%
 }
 
-#spellsaves
-{
-  width: 100%;
-}
-#spellsaves tr.title td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
 #spellsaves tr.header td
 {
-  vertical-align: bottom;
-  text-align: center;
-  background-color: white;
-  color: gray;
+	background-color:#FFF;
+	color:gray;
+	text-align:center;
+	vertical-align:bottom
 }
-#spellsaves tr.header td
-, #spellsaves tr.save td
+
+#spellsaves tr.header td,#spellsaves tr.save td
 {
-  padding: 2px;
+	padding:2px
 }
-#spellsaves td.level
+
+#spellsaves td.level,#spellsaves td.noinput
 {
-  background-color: white;
-  color: black;
-  text-align: center;
-  cursor: help;
+	background-color:#FFF;
+	color:#000;
+	text-align:center
 }
-#spellsaves td.noinput
-{
-  background-color: white;
-  color: black;
-  text-align: center;
-}
+
 #spellsaves td
 {
-  width: 25%;
+	width:25%
 }
+
 #spellsaves td input
 {
-  text-align: center;
-  border: 1px solid black;
-  width: 100%;
+	border:1px solid #000;
+	text-align:center;
+	width:100%
 }
 
-#spellstuff td.currency
+#spellsaves span.helplink
 {
-  vertical-align: top;
+	color:gray;
+	text-align:center
 }
-#currency
-{
-  width: 100%;
-}
-#currency tr.title td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
+
 #currency textarea
 {
-  border: 1px solid black;
-  width: 100%;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  height: 60px;
-  padding: 2px;
+	border:1px solid #000;
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	height:90px;
+	padding:2px;
+	width:100%
 }
 
-#spellstuff td.languages
-{
-  vertical-align: bottom;
-}
-#languages
-{
-  width: 100%;
-}
-#languages tr.title td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
 #languages td
 {
-  padding: 0 0 1px 0;
+	padding:0 0 1px;
+	border-bottom:1px solid #000;
+	border-style:none;
+	border-top:1px solid #FFF
 }
+
 #languages td input
 {
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  width: 100%;
-  font-size: 9px;
+	border-bottom:1px solid #FFF;
+	border-style:none;
+	border-top:1px solid #000;
+	font-size:12px;
+	width:100%
 }
 
 #spells
 {
-  width: 98%;
-  margin-left: 2%;
-}
-#spells span.help
-{
-  cursor: help;
-  color: white;
-  background-color: black;
-}
-#spells tr.title td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-#spellsaves table.spellsknown tr.header td
-{
-  text-align: center;
-}
-#spellsaves table.spellsknown tr.title td
-{
-  background-color: black;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-}
-#spellsaves table.spellsknown tr.title td a
-{
-  color: white;
-  text-decoration: none;
+	margin-left:2%;
+	width:98%
 }
 
-#spellsaves table.spellsknown input
+#spells table.spellsknown
 {
-  width: 5em;
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  font-size: 9px;
-  text-align: center;
+	margin-left:10%;
+	margin-right:10%;
+	width:80%
 }
 
-#spells table.spelllist td
+#spells table.spellsknown td
 {
-  padding: 1px 2px 0 2px;;
+	text-align:right;
+	width:20%
 }
-#spells table.spelllist
+
+#spells table.spellsknown input
 {
-  width: 100%;
-  margin-top: 1em;
+	border-bottom:1px solid #000;
+	border-style:none;
+	border-top:1px solid #FFF;
+	font-size:9px;
+	text-align:center;
+	width:5em
 }
+
 #spells table.spelllist tr.header td
 {
-  background-color: white;
-  color: gray;
-  vertical-align: bottom;
+	background-color:#FFF;
+	color:gray;
+	vertical-align:bottom
 }
-#spells table.spelllist tr.header td.mem
-, #spells table.spelllist tr td.mem input
-{
-  width: 100%;
-  text-align: center;
-}
-#spells table.spelllist tr td.help
-{
-  cursor: help;
-}
+
 #spells table.spelllist td.name
 {
-  width: 85%;
+	width:85%
 }
+
 #spells table.spelllist input
 {
-  width: 100%;
-  border-style: solid;
-  border-color: black;
-  border-width: 0 0 1px 0;
-  font-size: 9px;
-}
-#spells a
-{
-  color: black;
-  background-color: white;
-  text-decoration: none;
-}
-#spells a:hover
-{
-  text-decoration: underline;
+	border-color:#000;
+	border-style:solid;
+	border-width:0 0 1px;
+	font-size:9px;
+	width:100%
 }
 
-/************************************************************************/
-
-#notes
+#statsummary textarea
 {
-  width: 100%;
-  margin-top: 2em;
-}
-#notes tr.header td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-#notes tr.header td span
-, #notes tr.header td a
-{
-  background-color: black;
-  color: white;
-  font-size: 12px;
-  font-weight: normal;
-  font-variant: small-caps;
-  text-decoration: none;
-}
-#notes tr.header td a:hover
-{
-  background-color: black;
-  color: white;
-  text-decoration: underline;
-}
-#notes textarea
-{
-  border: 1px solid black;
-  width: 100%;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  height: 340px;
-  padding: 2px;
-}
-#notes div
-{
-  border: 1px solid black;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  padding: 2px;
+	border:1px solid #000;
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	height:1.25in;
+	padding:2px;
+	width:100%
 }
 
-
-#privatenotes
+#notes,#privatenotes
 {
-  width: 100%;
-  margin-top: 2em;
-}
-#privatenotes tr.header td
-{
-  background-color: black;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-#privatenotes tr.header td span
-, #privatenotes tr.header td a
-{
-  background-color: black;
-  color: white;
-  font-size: 12px;
-  font-weight: normal;
-  font-variant: small-caps;
-  text-decoration: none;
-}
-#privatenotes tr.header td a:hover
-{
-  background-color: black;
-  color: white;
-  text-decoration: underline;
-}
-#privatenotes textarea
-{
-  border: 1px solid black;
-  width: 100%;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  height: 340px;
-  padding: 2px;
-}
-#privatenotes div
-{
-  border: 1px solid black;
-  font-size: 12px;
-  font-family: Arial, sans-serif;
-  padding: 2px;
+	margin-top:2em;
+	width:100%
 }
 
-
-
-
-input.cash
+#notes textarea,#privatenotes textarea
 {
-  border-style: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid black;
-  font-size: 9px;
-  background-color: white;
-  width: 60px;
-  text-align: right;
+	border:1px solid #000;
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	height:2.5in;
+	padding:2px;
+	width:100%
 }
-/************************************************************************/
 
-#footer td
+#footer
 {
-  font-size: 9px;
-  background-color: white;
-  color: gray;
+	background-color:#FFF;
+	color:gray;
+	font-size:9px;
+	text-align:right
 }
-#save
+
+#maintable,#info,#stats,#statblock,#hp,#init,#speed,#imgload,#saves,#attacks,#skillsandgear,#skills,#feats,#feats table,#spellsaves,#currency,#languages
 {
-  text-align: center;
+	width:100%
+}
+
+#stats td.top,#stats td.footer,#attacks td.footer,#featsandgearcontainer,#spellstuff td.currency
+{
+	vertical-align:top
+}
+
+#stats td.bottom,#stats td.header,#attacks td.header,#spellstuff td.languages
+{
+	vertical-align:bottom
+}
+
+#stats td.header,#stats td.footer,#stats td.title,#attacks td.header,#attacks td.footer
+{
+	background-color:#FFF;
+	color:gray;
+	text-align:center
+}
+
+#stats td.tag,#attacks td.tag
+{
+	background-color:#000;
+	color:#FFF;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700;
+	text-align:center;
+	vertical-align:middle
+}
+
+#stats span.help,#hp span.help
+{
+	color:#FFF;
+	cursor:help
+}
+
+#statblock input.mod,textarea.bordered
+{
+	border:1px solid #000
+}
+
+#statblock input.tempmod,#attacks input.temp,textarea.bordered_gray
+{
+	border:1px solid gray
+}
+
+#hp td,#imgload td
+{
+	padding:0;
+	text-align:center
+}
+
+#hp td.basenum span,table.weapon tr.header td.type,table.armor tr.header td.type
+{
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700
+}
+
+#hp td.unit,#attacks td.unit
+{
+	width:8%
+}
+
+#hp td.char,#init td.char,#saves td.char,#attacks td.char
+{
+	text-align:center;
+	width:1em
+}
+
+#init td,#saves td
+{
+	padding:0
+}
+
+#init td.unit,#attacks td.wide
+{
+	width:20%
+}
+
+#init input,#speed input
+{
+	border:1px solid #000;
+	padding:1px;
+	text-align:center
+}
+
+#imgload input,#saves input
+{
+	border:1px solid #000;
+	text-align:center
+}
+
+#attacks span.help,table.weapon span.help,table.armor span.help,#feats span.help
+{
+	color:#FFF;
+	cursor:help
+}
+
+table.weapon input.left,table.armor input.left,#skills tr.header td.name,#skills tr.skillslot td.name input,#gear tr.header td.name,#gear input.name
+{
+	text-align:left
+}
+
+#spells span.helplink,#skills tr.header span.help,#gear tr.header span.help,#spells table.spelllist tr td.help
+{
+	cursor:help;
+	color:gray
+}
+
+#skills tr.title span a:hover,#skills a:hover,#gear a:hover,#spells a:hover
+{
+	text-decoration:underline
+}
+
+#skills tr.skillslot td,#feats table td
+{
+	padding:1px 1px 0
+}
+
+#skills tr.footer td,#gear tr.footer td
+{
+	background-color:#FFF;
+	color:gray;
+	text-align:left
+}
+
+#skills tr.footer td.total,#gear tr.footer td.total,#spells table.spellsknown tr.header td,#spells table.spelllist tr.header td.mem,#spells table.spelllist tr td.mem input,#save
+{
+	text-align:center
+}
+
+#skills a,#gear a,#spells a
+{
+	background-color:#FFF;
+	color:#000;
+	text-decoration:none
+}
+
+#skills span.help,#gear span.help,#spells span.help,#spellstuff span.help
+{
+	background-color:#000;
+	color:#FFF;
+	text-decoration:none
+}
+
+#gear tr.slot td,#spells table.spelllist td
+{
+	padding:1px 2px 0
+}
+
+#spellstuff,#spells table.spelllist,#statsummary
+{
+	margin-top:1em;
+	width:100%
+}
+
+#spellsaves tr.title td,#currency tr.title td,#languages tr.title td,#spells tr.title td,#statsummary tr.header td,#notes tr.header td,#privatenotes tr.header td
+{
+	background-color:#000;
+	color:#FFF;
+	font-family:Arial, sans-serif;
+	font-size:14px;
+	font-weight:700;
+	text-align:center
+}
+
+#statsummary tr.header td span,#statsummary tr.header td a,#notes tr.header td span,#privatenotes tr.header td span,#notes tr.header td a,#privatenotes tr.header td a
+{
+	background-color:#000;
+	color:#FFF;
+	font-size:12px;
+	font-variant:small-caps;
+	font-weight:400;
+	text-decoration:none
+}
+
+#statsummary tr.header td a:hover,#notes tr.header td a:hover,#privatenotes tr.header td a:hover
+{
+	background-color:#000;
+	color:#FFF;
+	text-decoration:underline
+}
+
+#statsummary div,#notes div,#privatenotes div
+{
+	border:1px solid #000;
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	padding:2px
 }
